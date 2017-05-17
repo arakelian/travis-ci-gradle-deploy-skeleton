@@ -2,7 +2,7 @@
 
 ## Acknowledgements
 
-This project was inspired by a similiar project by [Toshiaki Maki](https://github.com/making/travis-ci-maven-deploy-skelton) which deployed Maven-based projects to Maven Central using Travis CI.
+This project was inspired by a [similiar project by Toshiaki Maki](https://github.com/making/travis-ci-maven-deploy-skelton) which deployed Maven-based projects to Maven Central using Travis CI.
 
 ## Instructions
 
@@ -13,21 +13,21 @@ $ cp -R deploy <path to your project>/
 $ cp .travis.yml.template <path to your project>/.travis.yml
 
 $ cd <path to your project>
-$ export GITHUB_USER_SLASH_REPO=$(git remote -v | head -n1 | awk '{print $2}' | sed 's/.*://' | sed 's/\.git//')
+$ export GITHUB_REPO=$(git remote -v | head -n1 | awk '{print $2}' | sed 's/.*://' | sed 's/\.git//')
 
 $ gem install travis
 $ travis login
-$ travis enable -r ${GITHUB_USER_SLASH_REPO}
+$ travis enable -r ${GITHUB_REPO}
 
 $ export ENCRYPTION_PASSWORD=<password to encrypt>
 $ openssl aes-256-cbc -pass pass:$ENCRYPTION_PASSWORD -in ~/.gnupg/secring.gpg -out deploy/secring.gpg.enc
 $ openssl aes-256-cbc -pass pass:$ENCRYPTION_PASSWORD -in ~/.gnupg/pubring.gpg -out deploy/pubring.gpg.enc
 
-$ travis encrypt --add -r ${GITHUB_USER_SLASH_REPO} SONATYPE_USERNAME=<sonatype username>
-$ travis encrypt --add -r ${GITHUB_USER_SLASH_REPO} SONATYPE_PASSWORD=<sonatype password>
-$ travis encrypt --add -r ${GITHUB_USER_SLASH_REPO} ENCRYPTION_PASSWORD=<password to encrypt>
-$ travis encrypt --add -r ${GITHUB_USER_SLASH_REPO} GPG_KEYNAME=<gpg keyname (ex. 1C06698F)>
-$ travis encrypt --add -r ${GITHUB_USER_SLASH_REPO} GPG_PASSPHRASE=<gpg passphrase>
+$ travis encrypt --add -r ${GITHUB_REPO} SONATYPE_USERNAME=<sonatype username>
+$ travis encrypt --add -r ${GITHUB_REPO} SONATYPE_PASSWORD=<sonatype password>
+$ travis encrypt --add -r ${GITHUB_REPO} ENCRYPTION_PASSWORD=<password to encrypt>
+$ travis encrypt --add -r ${GITHUB_REPO} GPG_KEYNAME=<gpg keyname (ex. 1C06698F)>
+$ travis encrypt --add -r ${GITHUB_REPO} GPG_PASSPHRASE=<gpg passphrase>
 ```
 
 Add the following elements in your build.gradle
