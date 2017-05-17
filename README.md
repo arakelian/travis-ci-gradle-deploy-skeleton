@@ -1,6 +1,10 @@
-# How to deploy Gradle project to Maven Central using Travis CI
+# Deploying Gradle projects to Maven Central using Travis CI
 
-Inspired by similiar project by (Toshiaki Maki)[https://github.com/making/travis-ci-maven-deploy-skelton] for deploying Maven projects using Travis CI.
+## Acknowledgements
+
+This project was inspired by a similiar project by [Toshiaki Maki](https://github.com/making/travis-ci-maven-deploy-skelton) which deployed Maven-based projects to Maven Central using Travis CI.
+
+## Instructions
 
 ``` console
 $ git clone https://github.com/arakelian/travis-ci-gradle-deploy-skeleton
@@ -26,7 +30,7 @@ $ travis encrypt --add -r ${GITHUB_USER_SLASH_REPO} GPG_KEYNAME=<gpg keyname (ex
 $ travis encrypt --add -r ${GITHUB_USER_SLASH_REPO} GPG_PASSPHRASE=<gpg passphrase>
 ```
 
-Add the following elements in your pom.xml
+Add the following elements in your build.gradle
 
 ``` gradle
 
